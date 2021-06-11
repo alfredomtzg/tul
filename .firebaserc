@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tul-store-91195": {
+      "hosting": {
+        "tul": [
+          "tul-store-91195"
+        ]
+      }
+    }
+  }
+}
