@@ -1,1 +1,57 @@
-<p>register works!</p>
+<form [formGroup]="form" (ngSubmit)="register($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline" color="secondary">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" />
+        <mat-error *ngIf="form.get('email')?.hasError('required')"
+          >Éste campo es obligatorio</mat-error
+        >
+        <mat-error *ngIf="form.get('email')?.hasError('email')"
+          >Ingresa un email válido</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="seePassword ? 'text' : 'password'"
+        />
+        <button
+          type="button"
+          (click)="seePassword = !seePassword"
+          mat-icon-button
+          matSuffix
+          aria-label="icon button see password"
+        >
+          <mat-icon>
+            {{ seePassword ? "visibility" : "visibility_off" }}</mat-icon
+          >
+        </button>
+        <mat-error *ngIf="form.get('password')?.hasError('required')"
+          >Éste campo es obligatorio</mat-error
+        >
+        <mat-error *ngIf="form.get('password')?.hasError('minlength')"
+          >Debe contener al menos 6 caracteres</mat-error
+        >
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Crear Registro
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        color="secondary"
+        routerLink="/auth/login"
+      >
+        Ir a Login
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
