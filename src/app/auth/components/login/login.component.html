@@ -7,6 +7,8 @@
       <mat-form-field appearance="outline" color="secondary">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput type="email" />
+        <mat-error *ngIf="form.get('email')?.hasError('required')"
+          >Éste campo es obligatorio</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>

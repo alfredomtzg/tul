@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 
 
@@ -16,15 +20,19 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule,
+    MatBadgeModule,
     MatInputModule,
+    MatButtonModule,
+    MatToolbarModule,
     MatFormFieldModule
   ],
   exports: [
     MatCardModule,
     MatIconModule,
+    MatBadgeModule,
     MatInputModule,
     MatButtonModule,
+    MatToolbarModule,
     MatFormFieldModule
   ]
 })
