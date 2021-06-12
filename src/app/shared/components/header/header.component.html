@@ -8,17 +8,30 @@
             >Products</a
           >
           <a mat-button routerLink="order" routerLinkActive="active">Order</a>
-          <a mat-button routerLink="cart" routerLinkActive="active">cart</a>
+          <a mat-button routerLink="create" routerLinkActive="active"
+            >Crea un producto</a
+          >
         </nav>
-        <a
-          routerLink="cart"
-          mat-raised-button
-          [matBadge]="total$ | async"
-          matBadgeColor="warn"
-        >
-          <mat-icon>shopping_cart</mat-icon>
-          carrito
-        </a>
+        <div>
+          <a
+            routerLink="cart"
+            mat-raised-button
+            [matBadge]="total$ | async"
+            matBadgeColor="warn"
+          >
+            <mat-icon>shopping_cart</mat-icon>
+            carrito
+          </a>
+          <button
+            type="button"
+            color="warn"
+            mat-icon-button
+            (click)="logout()"
+            class="logoutButton"
+          >
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

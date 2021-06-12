@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Product } from 'src/app/shared/model/product.model';
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private angularFirestore: AngularFirestore
+  ) { }
 
+  getAllProductss(product: Product) {
+    return this.angularFirestore.collection('products').add(product);
+  }
   getAllProducts() {
     return this.http.get<Product[]>(`${environment.url_api}/products`);
   }

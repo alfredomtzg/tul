@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(value.email, value.password)
         .then((response) => {
           console.log(response)
-          this.router.navigate(['/home'])
+          this.router.navigate(['/shop'])
         })
         .catch((error) => {
           alert(error?.message)
