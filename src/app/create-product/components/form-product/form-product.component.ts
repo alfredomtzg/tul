@@ -25,13 +25,13 @@ export class FormProductComponent implements OnInit {
 
   ngOnInit(): void { }
 
- 
+
 
   private buildForm() {
     this.form = this.formBuilder.group({
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
-      price: [0, [Validators.required]],
+      sku: [0, [Validators.required]],
       description: ['', [Validators.required]],
     });
   }
@@ -40,16 +40,16 @@ export class FormProductComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       this.productsService
-        .createProduct(this.form.value)
-        .subscribe((response) => {
+        .createProductFb(this.form.value)
+        .then((response) => {
           console.log(response);
-          this.router.navigate(['./shop/product'])
-        });
+          this.form.reset({ id: '', title: '', sku: 0, description: '' })
+        })
+        .catch(error => console.log(error)
+        )
     }
   }
 
-  get priceField() {
-    return this.form.get('price');
-  }
+
 
 }

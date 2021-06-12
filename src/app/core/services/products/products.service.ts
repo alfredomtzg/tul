@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Product } from 'src/app/shared/model/product.model';
 import { AngularFirestore } from '@angular/fire/firestore'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,11 @@ export class ProductsService {
     private angularFirestore: AngularFirestore
   ) { }
 
-  getAllProductss(product: Product) {
+  createProductFb(product: Product) {
     return this.angularFirestore.collection('products').add(product);
+  }
+  getAllProductsFb() : Observable <any[]>  {
+    return this.angularFirestore.collection('products').valueChanges()
   }
   getAllProducts() {
     return this.http.get<Product[]>(`${environment.url_api}/products`);

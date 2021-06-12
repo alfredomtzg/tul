@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/shared/model/product.model';
+
 
 
 @Component({
@@ -10,19 +13,22 @@ import { Product } from 'src/app/shared/model/product.model';
 })
 export class CartListComponent implements OnInit {
 
-  products: Product [] = [ {id: '2', title: 'Hola', price: 2222, description: 'hola' }];
-  displayedColumns: string[] = ['id', 'title', 'price', 'actions'];
+  products: Product[] = [];
+  displayedColumns: string[] = ['id', 'title', 'sku', 'actions'];
+ 
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.fetchProducts();
   }
 
   fetchProducts() {
-    this.productsService.getAllProducts().subscribe((product: Product []) => {
-      this.products = product;
-    });
+    this.productsService.getAllProductsFb().subscribe((products: Product[]) => {
+      console.log(products);
+      this.products = products;
+    })
+
   }
   deleteProduct(id: string) {
     this.productsService.deleteProduct(id).subscribe((response) => {
