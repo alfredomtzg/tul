@@ -4,6 +4,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -20,7 +21,9 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

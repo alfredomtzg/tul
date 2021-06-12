@@ -15,14 +15,38 @@ const routes: Routes = [
     loadChildren: ()=> import('./auth/auth.module').then((m)=>m.AuthModule)
   },
   {
-    path: 'home',
+    path: 'shop',
     canActivate: [AuthGuard],
     component: LayoutComponent,
     children: [
       {
         path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadChildren: ()=> import('./home/home.module').then((m)=>m.HomeModule)
+      },
+      {
+        path: 'products',
         loadChildren: ()=> import('./product/product.module').then((m)=>m.ProductModule)
-      }
+      },
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('./order/order.module').then((m) => m.OrderModule),
+      },
+      {
+        path: 'cart',
+        loadChildren: () =>
+          import('./cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: 'create',
+        loadChildren: () =>
+          import('./create-product/create-product.module').then((m) => m.CreateProductModule),
+      },
 
     ]
   },

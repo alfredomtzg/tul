@@ -1,0 +1,11 @@
+.container {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  .active {
+    background-color: #52b9a5;
+  }
+  .logoutButton {
+    margin-left: 1rem;
+  }
+}
