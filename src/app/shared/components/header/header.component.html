@@ -7,11 +7,15 @@
           <a mat-button routerLink="products" routerLinkActive="active"
             >Products</a
           >
-          <a mat-button routerLink="order" routerLinkActive="active"
-            >Order</a
-          >
+          <a mat-button routerLink="order" routerLinkActive="active">Order</a>
+          <a mat-button routerLink="cart" routerLinkActive="active">cart</a>
         </nav>
-        <a routerLink="/shop/cart" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+        <a
+          routerLink="cart"
+          mat-raised-button
+          [matBadge]="total$ | async"
+          matBadgeColor="warn"
+        >
           <mat-icon>shopping_cart</mat-icon>
           carrito
         </a>

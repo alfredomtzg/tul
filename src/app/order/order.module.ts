@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './components/order/order.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { OrderComponent } from './components/order/order.component';
   ],
   imports: [
     CommonModule,
-    OrderRoutingModule
+    OrderRoutingModule,
+    MaterialModule
   ]
 })
 export class OrderModule { }

@@ -9,6 +9,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
+
+import { HttpClientModule } from '@angular/common/http'
 
 import { environment } from 'src/environments/environment';
 
@@ -22,10 +25,12 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     SharedModule,
     CoreModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabase
   ],
   providers: [],
   bootstrap: [AppComponent]
