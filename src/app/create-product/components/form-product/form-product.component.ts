@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/core/services/products/products.service
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
   selector: 'app-form-product',
@@ -42,7 +43,8 @@ export class FormProductComponent implements OnInit {
       title: ['', [Validators.required]],
       sku: [0, [Validators.required]],
       description: ['', [Validators.required]],
-      creationDate: Date()
+      creationDate: [Date()],
+      editDate: [Date()],
     });
   }
 
@@ -53,15 +55,38 @@ export class FormProductComponent implements OnInit {
     }
   }
 
-  saveProduct(event: Event) {
+  submitProduct(event: Event) {
     event.preventDefault();
+    this.editMode ? this.updateProduct(): this.createproduct();
+
+  }
+  createproduct() {
+    console.log('creando');
+    
     if (this.form.valid) {
       this.productsService
         .createProductFb(this.form.value)
         .then((response) => {
-          console.log(response);
           this.router.navigate(['/shop/products'])
-          this.form.reset({ title: '', sku: 0, description: '' })
+          this.form.reset()
+        })
+        .catch(error => console.log(error)
+        )
+    }
+  }
+  updateProduct(){
+    const product: Partial <Product> = {
+      title: this.form.value.title,
+      sku: this.form.value.sku,
+      description: this.form.value.description,
+      editDate: Date()
+    }
+    if (this.id !== null) {
+      this.productsService
+        .updateProductFb(this.id , product)
+        .then((response) => {
+          this.router.navigate(['/shop/products'])
+          this.form.reset()
         })
         .catch(error => console.log(error)
         )

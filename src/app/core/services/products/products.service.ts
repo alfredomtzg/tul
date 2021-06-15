@@ -17,6 +17,9 @@ export class ProductsService {
   createProductFb(product: Product) {
     return this.angularFirestore.collection('products').add(product);
   }
+  updateProductFb(id: string, product: Partial<Product>): Promise <void> {
+    return this.angularFirestore.collection('products').doc(id).update(product);
+  }
   getAllProductsFb() : Observable <any[]>  {
     return this.angularFirestore.collection('products').valueChanges()
   }
@@ -29,6 +32,7 @@ export class ProductsService {
   getProductByIdFb (id: string ): Observable <unknown> {
     return this.angularFirestore.collection('products').doc(id).snapshotChanges();
   }
+ 
 
   getAllProducts() {
     return this.http.get<Product[]>(`${environment.url_api}/products`);
