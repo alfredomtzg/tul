@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="saveProduct($event)">
   <mat-card>
     <mat-card-title>
-      Producto
+      {{editMode? 'Editar Producto': 'Producto'}}
     </mat-card-title>
     <mat-card-content>
       <mat-form-field appearance="outline" >

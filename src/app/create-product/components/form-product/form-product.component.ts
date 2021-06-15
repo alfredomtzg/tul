@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/core/services/products/products.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
@@ -13,17 +13,27 @@ import { Observable } from 'rxjs';
 export class FormProductComponent implements OnInit {
   form!: FormGroup;
   image$!: Observable<any>;
+  id!: string | null;
+  editMode = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private productsService: ProductsService,
-    private angularFireStorage: AngularFireStorage
+    private angularFireStorage: AngularFireStorage,
+    private activatedRoute: ActivatedRoute
   ) {
     this.buildForm();
+    this.editMode = this.router.url.includes('edit');
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.editMode, 'and', this.id);
+
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getProductById(this.id);
+
+  }
 
 
 
@@ -36,6 +46,13 @@ export class FormProductComponent implements OnInit {
     });
   }
 
+  getProductById(id: string | null) {
+    if (id !== null) {
+      this.productsService.getProductByIdFb(id).subscribe((res: any) => 
+      this.form.patchValue(res?.payload.data()))
+    }
+  }
+
   saveProduct(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
@@ -43,6 +60,7 @@ export class FormProductComponent implements OnInit {
         .createProductFb(this.form.value)
         .then((response) => {
           console.log(response);
+          this.router.navigate(['/shop/products'])
           this.form.reset({ title: '', sku: 0, description: '' })
         })
         .catch(error => console.log(error)

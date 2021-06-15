@@ -18,8 +18,8 @@
 <ng-container matColumnDef="actions">
   <th mat-header-cell *matHeaderCellDef> Actions </th>
   <td mat-cell *matCellDef="let element"> 
-    <button mat-stroked-button [routerLink]="['edit', element.id]" >Editar</button> 
-    <button mat-raised-button color="warn" (click)="deleteProduct(element.id)" >Borrar</button> 
+    <button type="button" mat-stroked-button [routerLink]="['edit', element.id]" >Editar</button> 
+    <button type="button" mat-raised-button color="warn" (click)="deleteProduct(element.id)" >Borrar</button> 
   </td>
 </ng-container>
 

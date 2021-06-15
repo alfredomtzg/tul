@@ -11,14 +11,17 @@
     <p>{{ product.sku }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="addCart()">
+    <button type="button" mat-raised-button color="primary" (click)="addCart()">
       Agregar al carrito
     </button>
-    <a mat-raised-button [routerLink]="['/products', product.idt]">
+    <a mat-raised-button [routerLink]="['/shop', product.idt]">
       Ver Detalle</a
     >
-    <button mat-raised-button color="primary" (click)="deleteItemColecciton(product.idt)">
-      Borrar elemento de la colleción
+    <button type="button" mat-raised-button  (click)="deleteItemColecciton(product.idt)">
+      Borrar producto
+    </button>
+    <button type="button" [routerLink]="['/shop/create/edit/', product.idt]" mat-raised-button >
+      Editar producto
     </button>
   </mat-card-actions>
 </mat-card>

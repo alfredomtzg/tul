@@ -24,9 +24,12 @@ export class ProductsService {
     return this.angularFirestore.collection('products').snapshotChanges();
   }
   deleteProductFb(id: string): Promise <unknown> {
-    return this.angularFirestore.collection('products').doc(id).delete()
-
+    return this.angularFirestore.collection('products').doc(id).delete();
   }
+  getProductByIdFb (id: string ): Observable <unknown> {
+    return this.angularFirestore.collection('products').doc(id).snapshotChanges();
+  }
+
   getAllProducts() {
     return this.http.get<Product[]>(`${environment.url_api}/products`);
   }
