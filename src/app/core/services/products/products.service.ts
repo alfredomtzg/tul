@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Product } from 'src/app/shared/model/product.model';
 import { AngularFirestore } from '@angular/fire/firestore'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,23 +14,23 @@ export class ProductsService {
     private angularFirestore: AngularFirestore
   ) { }
 
-  getAllProductss(product: Product) {
+  createProductFb(product: Product) {
     return this.angularFirestore.collection('products').add(product);
   }
-  getAllProducts() {
-    return this.http.get<Product[]>(`${environment.url_api}/products`);
+  updateProductFb(id: string, product: Partial<Product>): Promise <void> {
+    return this.angularFirestore.collection('products').doc(id).update(product);
   }
-  getProductById(id: string) {
-    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
+  getAllProductsFb() : Observable <any[]>  {
+    return this.angularFirestore.collection('products').valueChanges()
   }
-  createProduct(product: Product) {
-    return this.http.post(`${environment.url_api}/products`, product);
+  getAllProductsIDFb() : Observable <any[]>  {
+    return this.angularFirestore.collection('products').snapshotChanges();
   }
-  updateProduct(id: string, changes: Partial<Product>) {
-    return this.http.put(`${environment.url_api}/products/${id}`, changes);
+  deleteProductFb(id: string): Promise <unknown> {
+    return this.angularFirestore.collection('products').doc(id).delete();
   }
-  deleteProduct(id: string) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+  getProductByIdFb (id: string ): Observable <unknown> {
+    return this.angularFirestore.collection('products').doc(id).snapshotChanges();
   }
 
 }

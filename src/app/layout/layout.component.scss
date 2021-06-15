@@ -5,3 +5,9 @@ main {
   margin-left: 0px;
   margin-right: 0px;
 }
+@media (min-width: 576px) {
+  main {
+    width: 96%;
+    padding: 2%;
+  }
+}

@@ -1,1 +1,10 @@
-<p>products works!</p>
+<h2 *ngIf="products.length === 0" > No hay productos que mostrar, por favor agrega un producto </h2>
+
+<div 
+class="list-grid" >
+  <app-product 
+  *ngFor="let product of products" 
+  [product]="product"
+  
+  (deleteProductFB)="deleteProduct($event)" ></app-product>
+</div>

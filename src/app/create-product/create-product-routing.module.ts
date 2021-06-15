@@ -6,8 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: FormProductComponent
-
-}
+  },
+  {
+    path: 'edit/:id',
+    component: FormProductComponent
+  }
 ];
 
 @NgModule({

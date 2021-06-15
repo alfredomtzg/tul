@@ -1,11 +1,31 @@
-.container {
-  width: 96%;
-  display: flex;
-  justify-content: space-between;
-  .active {
-    background-color: #52b9a5;
+.mat-toolbar-row {
+  height: 100px;
+  .container {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    nav {
+      overflow-x: scroll;
+    }
+    .active {
+      background-color: #52b9a5;
+    }
+    .logoutButton {
+      margin-left: 1rem;
+    }
   }
-  .logoutButton {
-    margin-left: 1rem;
+}
+
+@media (min-width: 576px) {
+  .mat-toolbar-row {
+    height: 64px;
+    .container {
+      width: 96%;
+      display: flex;
+      justify-content: space-between;
+      nav {
+        overflow-x: auto;
+      }
+    }
   }
 }

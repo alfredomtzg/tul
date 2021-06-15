@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  url_api: '',
   firebase : {
     apiKey: "AIzaSyC5LLL9moDkVVlyqcp5nz7hEeyt0isg8o0",
     authDomain: "tul-store-91195.firebaseapp.com",
