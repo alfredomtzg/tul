@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/shared/model/product.model';
 
@@ -13,25 +13,25 @@ import { Product } from 'src/app/shared/model/product.model';
 })
 export class CartListComponent implements OnInit {
 
-  products: Product[] = [];
   displayedColumns: string[] = ['id', 'title', 'sku', 'actions'];
- 
+  products$!: Observable <Product[]>;
 
-  constructor(private productsService: ProductsService) { }
+
+  constructor(
+    private productsService: ProductsService,
+    private cartService: CartService
+    ) { }
 
   ngOnInit(): void {
-    this.fetchProducts();
+    this.fetchProductsCart();
   }
 
-  fetchProducts() {
-    this.productsService.getAllProductsFb().subscribe((products: Product[]) => {
-      console.log(products);
-      this.products = products;
-    })
-
+  fetchProductsCart() {
+      this.products$ = this.cartService.cart$
   }
-  deleteProductCart(id: string) {
-    console.log(id, 'Eliminar productp');
+  deleteProductCart(title: string) {
+    console.log(title, 'Eliminar producto');
+    this.cartService.deleteProduct(title);
   }
 }
 
