@@ -33,7 +33,7 @@ export class CartListComponent implements OnInit {
   deleteProduct(id: string) {
     this.productsService.deleteProduct(id).subscribe((response) => {
       console.log(response);
-      this.products = this.products.filter(item => item.id !== id)
+      this.products = this.products.filter(item => item.title !== id)
     });
   }
 }

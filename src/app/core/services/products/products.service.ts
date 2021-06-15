@@ -20,6 +20,10 @@ export class ProductsService {
   getAllProductsFb() : Observable <any[]>  {
     return this.angularFirestore.collection('products').valueChanges()
   }
+  getAllProductsIDFb() : Observable <any[]>  {
+    return this.angularFirestore.collection('products').snapshotChanges();
+  }
+  
   getAllProducts() {
     return this.http.get<Product[]>(`${environment.url_api}/products`);
   }

@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,

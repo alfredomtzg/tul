@@ -29,10 +29,10 @@ export class FormProductComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       sku: [0, [Validators.required]],
       description: ['', [Validators.required]],
+      creationDate: Date()
     });
   }
 
@@ -43,7 +43,7 @@ export class FormProductComponent implements OnInit {
         .createProductFb(this.form.value)
         .then((response) => {
           console.log(response);
-          this.form.reset({ id: '', title: '', sku: 0, description: '' })
+          this.form.reset({ title: '', sku: 0, description: '' })
         })
         .catch(error => console.log(error)
         )
