@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/shared/model/product.model';
 
@@ -11,7 +12,9 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
 
-  constructor(    private productsService: ProductsService
+  constructor(    
+    private productsService: ProductsService,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -30,7 +33,14 @@ export class ProductsComponent implements OnInit {
     });
   }
   deleteProduct(id: string) {
-    console.log(id, ' se elimino');
+    this.productsService.deleteProductFb(id).then((response)=> {
+      console.log(response, 'response se eliminó')
+      this.snackBar.open('Se borro el registro', '', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      })
+      
+    }).catch(error=> console.log(error))
   }
 
 }
