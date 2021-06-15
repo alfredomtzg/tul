@@ -2,7 +2,7 @@
 class="list-grid" >
   <app-product 
   *ngFor="let product of products" 
-  [product]="product" ></app-product>
-  <!-- 
-  (productAddCart)="clickProduct($event)"  -->
+  [product]="product"
+  
+  (deleteProductFB)="deleteProduct($event)" ></app-product>
 </div>

@@ -14,8 +14,11 @@
     <button mat-raised-button color="primary" (click)="addCart()">
       Agregar al carrito
     </button>
-    <a mat-raised-button [routerLink]="['/products', product.id]">
+    <a mat-raised-button [routerLink]="['/products', product.idt]">
       Ver Detalle</a
     >
+    <button mat-raised-button color="primary" (click)="deleteItemColecciton(product.idt)">
+      Borrar elemento de la colleción
+    </button>
   </mat-card-actions>
 </mat-card>

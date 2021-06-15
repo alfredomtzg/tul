@@ -1,4 +1,5 @@
-import { Component,  Input, OnInit } from '@angular/core';
+import { Component,  Input, OnInit, Output, 
+  EventEmitter, } from '@angular/core';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { Product } from 'src/app/shared/model/product.model';
 
@@ -9,7 +10,7 @@ import { Product } from 'src/app/shared/model/product.model';
 })
 export class ProductComponent implements OnInit {
   @Input() product!: Product;
-  // @Output() productAddCart: EventEmitter<string> = new EventEmitter();
+  @Output() deleteProductFB: EventEmitter<string> = new EventEmitter();
 
   today = new Date();
 
@@ -22,6 +23,8 @@ export class ProductComponent implements OnInit {
 
   addCart(): void {
     this.cartService.addCart(this.product)
-    // this.productAddCart.emit(this.product.id);
+  }
+  deleteItemColecciton(id: string) {
+    this.deleteProductFB.emit(id);
   }
 }

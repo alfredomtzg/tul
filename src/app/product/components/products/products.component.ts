@@ -27,12 +27,10 @@ export class ProductsComponent implements OnInit {
         })
       });
       console.log(this.products);
-      
-      // this.products = products;
     });
   }
-  // clickProduct(id: number) {
-  //   console.log(id);
-  // }
+  deleteProduct(id: string) {
+    console.log(id, ' se elimino');
+  }
 
 }
