@@ -30,11 +30,8 @@ export class CartListComponent implements OnInit {
     })
 
   }
-  deleteProduct(id: string) {
-    this.productsService.deleteProduct(id).subscribe((response) => {
-      console.log(response);
-      this.products = this.products.filter(item => item.title !== id)
-    });
+  deleteProductCart(id: string) {
+    console.log(id, 'Eliminar productp');
   }
 }
 
